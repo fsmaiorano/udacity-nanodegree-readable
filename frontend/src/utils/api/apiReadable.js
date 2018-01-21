@@ -9,3 +9,9 @@ const headers = {
 export const fetchPosts = () =>
     fetch(`${apiUrl}/posts`, { headers })
         .then(res => res.json());
+
+//Categories
+export const fetchAllCategories = () =>
+    fetch(`${apiUrl}/categories`, { headers })
+        .then(res => res.json())
+        .then(data => data.categories)
