@@ -11,7 +11,7 @@ class PostList extends Component {
             <div>
                 {
                     posts !== undefined && posts.map((post) => (
-                        <div  className='post-list'>
+                        <div key={post.title} className='post-list'>
                             <p>{post.title}</p>
                             <p>{post.body}</p>
                         </div>

@@ -6,8 +6,7 @@ export default props => (
         <ul>
             {
                 props.categories !== undefined && props.categories.map((category) => (
-                    // <li key={category.name}> {category.name} </li>
-                    <div>{category.name}</div>
+                    <li key={category.name}> {category.name} </li>
                 ))
             }
         </ul>
