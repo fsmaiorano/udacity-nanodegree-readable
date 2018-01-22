@@ -1,4 +1,6 @@
 import * as API from '../utils/api/apiReadable';
+import { getComments } from '../comments/actions'
+
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const ORDERBY_MORE_VOTES = 'ORDERBY_MORE_VOTES'
@@ -42,6 +44,10 @@ export const getAllPosts = () => {
         API.fetchPosts().then(posts => {
             dispatch(getPosts(posts))
             dispatch(orderByMoreVotes())
+            posts.map(post=>{
+                dispatch(getComments(post.id))
+                return post
+              })
         })
     }
 }

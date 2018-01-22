@@ -33,6 +33,7 @@ class PostList extends Component {
                 {
                     posts !== undefined && posts.map((post) => (
                         <div key={post.title} className='post-list'>
+                            <Link to={`/${post.category}/${post.id}`}>Details</Link>
                             <p>{post.title}</p>
                             <p>{post.body}</p>
                         </div>
