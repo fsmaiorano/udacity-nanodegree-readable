@@ -7,6 +7,7 @@ import './App.css';
 
 import PostList from './posts/postList';
 import CategoryList from './categories/categoryList';
+import CategoryDetail from './categories/categoryDetail';
 import { getAllPosts } from './posts/actions';
 import { getAllCategories } from './categories/actions';
 
@@ -31,6 +32,7 @@ class App extends Component {
               </div>
             </div>
           )} />
+          <Route exact path={'/:category'} component={CategoryDetail} />
         </Switch>
       </div>
     );
