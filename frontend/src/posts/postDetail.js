@@ -3,6 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { addComment, getComments } from '../comments/actions';
+import Post from './post';
+import CommentList from '../comments/commentList';
 import serializeForm from 'form-serialize'
 
 class PostDetail extends Component {
@@ -21,39 +23,41 @@ class PostDetail extends Component {
         }
     }
 
-    renderPost = (posts) => {
-        const postId = this.props.match.params.postId;
-        const post = posts.filter((post) => post.id === postId)[0];
-        if (post) {
-            return (
-                <div>
-                    <p>{post.title}</p>
-                    <p>{post.body}</p>
-                </div>
-            )
-        }
-    }
+    // renderPost = (posts) => {
+    //     const postId = this.props.match.params.postId;
+    //     const post = posts.filter((post) => post.id === postId)[0];
+    //     if (post) {
+    //         return (
+    //             <div>
+    //                 <p>{post.title}</p>
+    //                 <p>{post.body}</p>
+    //             </div>
+    //         )
+    //     }
+    // }
 
-    renderComments = (comments) => {
-        return (
-            comments && comments.map(comment => (
-                comment.deleted === true ? (<div></div>) : (
-                    <div key={comment.id} >
-                        <p>{comment.body}</p>
-                        <p>{comment.author}</p>
-                    </div>
-                )
-            ))
-        )
-    }
+    // renderComments = (comments) => {
+    //     return (
+    //         comments && comments.map(comment => (
+    //             comment.deleted === true ? (<div></div>) : (
+    //                 <div key={comment.id} >
+    //                     <p>{comment.body}</p>
+    //                     <p>{comment.author}</p>
+    //                 </div>
+    //             )
+    //         ))
+    //     )
+    // }
 
     render() {
         const { posts, comments } = this.props;
+        const postId = this.props.match.params.postId;
+        const post = posts.filter((post) => post.id === postId)[0];
         return (
             <div>
                 <div>
                     <p>Post</p>
-                    {this.renderPost(posts)}
+                    <Post post={post} />
                 </div>
                 <div className='comment-create'>
                     <form onSubmit={this.onCreateComment}>
@@ -64,7 +68,7 @@ class PostDetail extends Component {
                 </div>
                 <div className='comment-list'>
                     <p>Comments</p>
-                    {this.renderComments(comments)}
+                    <CommentList comments={comments} />
                 </div>
             </div>
         )
@@ -80,7 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getComments: () => dispatch(getComments()),
+        getComments: (postId) => dispatch(getComments(postId)),
         addComment: (postId, comment) => dispatch(addComment(postId, comment))
     }
 }

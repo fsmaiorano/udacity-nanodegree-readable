@@ -44,10 +44,10 @@ export const getAllPosts = () => {
         API.fetchPosts().then(posts => {
             dispatch(getPosts(posts))
             dispatch(orderByMoreVotes())
-            posts.map(post=>{
-                dispatch(getComments(post.id))
-                return post
-              })
+            // posts.map(post=>{
+            //     dispatch(getComments(post.id))
+            //     return post
+            //   })
         })
     }
 }
