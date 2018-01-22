@@ -31,6 +31,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
-.post-list {
+.post-list, .comment-list {
   border: solid 1px black;
 }
+
