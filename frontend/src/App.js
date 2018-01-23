@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
+import PostCreate from './posts/postCreate';
 import PostList from './posts/postList';
 import CategoryList from './categories/categoryList';
 import CategoryDetail from './categories/categoryDetail';
@@ -28,11 +29,12 @@ class App extends Component {
             <div>
               <CategoryList categories={categories} />
               <PostList posts={posts} />
-              <div>
-                <Link to='/posts/create' />
+              <div className="post-create">
+                <Link to='/post/create'>X</Link>
               </div>
             </div>
           )} />
+          <Route exact path={'/post/create'} component={PostCreate} />
           <Route exact path={'/:category'} component={CategoryDetail} />
           <Route exact path={'/:category/:postId'} component={PostDetails} />
         </Switch>

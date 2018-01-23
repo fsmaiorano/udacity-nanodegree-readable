@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-//import * as actions from './actions';
- import { addComment, getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByOlder } from '../comments/actions';
+import { addComment, getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByOlder } from '../comments/actions';
 import Post from './post';
 import CommentList from '../comments/commentList';
 import serializeForm from 'form-serialize'
@@ -40,7 +38,7 @@ class PostDetail extends Component {
     }
 
     render() {
-        const { posts, comments,commentSort } = this.props;
+        const { posts, comments, commentSort } = this.props;
         const postId = this.props.match.params.postId;
         const post = posts.filter((post) => post.id === postId)[0];
         return (
@@ -84,10 +82,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getComments: (postId) => dispatch(getComments(postId)),
         addComment: (postId, comment) => dispatch(addComment(postId, comment)),
-        orderByMoreVotes : () => dispatch(orderByMoreVotes()),
-        orderByLessVotes : () => dispatch(orderByLessVotes()),
-        orderByNewer : () => dispatch(orderByNewer()),
-        orderByOlder : () => dispatch(orderByOlder())
+        orderByMoreVotes: () => dispatch(orderByMoreVotes()),
+        orderByLessVotes: () => dispatch(orderByLessVotes()),
+        orderByNewer: () => dispatch(orderByNewer()),
+        orderByOlder: () => dispatch(orderByOlder())
     }
 }
 
