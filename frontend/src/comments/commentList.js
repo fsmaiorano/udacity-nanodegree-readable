@@ -1,4 +1,5 @@
 import React from 'react';
+import { dateFormat } from '../utils/helpers/helpers';
 
 export default props => (
     <div>
@@ -7,6 +8,7 @@ export default props => (
                 <div>
                     <p>{comment.body}</p>
                     <p>{comment.author}</p>
+                    <p>{dateFormat(comment.timestamp)}</p>
                 </div>
             ))
         }
