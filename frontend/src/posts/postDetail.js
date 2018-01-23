@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { addComment, getComments } from '../comments/actions';
+//import * as actions from './actions';
+ import { addComment, getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByOlder } from '../comments/actions';
 import Post from './post';
 import CommentList from '../comments/commentList';
 import serializeForm from 'form-serialize'
@@ -23,34 +24,23 @@ class PostDetail extends Component {
         }
     }
 
-    // renderPost = (posts) => {
-    //     const postId = this.props.match.params.postId;
-    //     const post = posts.filter((post) => post.id === postId)[0];
-    //     if (post) {
-    //         return (
-    //             <div>
-    //                 <p>{post.title}</p>
-    //                 <p>{post.body}</p>
-    //             </div>
-    //         )
-    //     }
-    // }
-
-    // renderComments = (comments) => {
-    //     return (
-    //         comments && comments.map(comment => (
-    //             comment.deleted === true ? (<div></div>) : (
-    //                 <div key={comment.id} >
-    //                     <p>{comment.body}</p>
-    //                     <p>{comment.author}</p>
-    //                 </div>
-    //             )
-    //         ))
-    //     )
-    // }
+    sortBy = (event) => {
+        const value = event.target.value
+        switch (value) {
+            case 'ORDERBY_MORE_VOTES':
+                return this.props.orderByMoreVotes()
+            case 'ORDERBY_LESS_VOTES':
+                return this.props.orderByLessVotes()
+            case 'ORDERBY_NEWER':
+                return this.props.orderByNewer()
+            case 'ORDERBY_OLDER':
+                return this.props.orderByOlder()
+            default: return ''
+        }
+    }
 
     render() {
-        const { posts, comments } = this.props;
+        const { posts, comments,commentSort } = this.props;
         const postId = this.props.match.params.postId;
         const post = posts.filter((post) => post.id === postId)[0];
         return (
@@ -66,6 +56,14 @@ class PostDetail extends Component {
                         <button>submit comment</button>
                     </form>
                 </div>
+                sortBy:
+                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={commentSort}>
+                    <option value='ORDERBY_MORE_VOTES' >More Votes</option>
+                    <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
+                    <option value='ORDERBY_NEWER'>Newer</option>
+                    <option value='ORDERBY_OLDER' >Older</option>
+
+                </select>
                 <div className='comment-list'>
                     <p>Comments</p>
                     <CommentList comments={comments} />
@@ -76,18 +74,23 @@ class PostDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { posts, comments } = state;
+    const { posts, comments, commentSort } = state;
     return {
-        posts, comments
+        posts, comments, commentSort
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getComments: (postId) => dispatch(getComments(postId)),
-        addComment: (postId, comment) => dispatch(addComment(postId, comment))
+        addComment: (postId, comment) => dispatch(addComment(postId, comment)),
+        orderByMoreVotes : () => dispatch(orderByMoreVotes()),
+        orderByLessVotes : () => dispatch(orderByLessVotes()),
+        orderByNewer : () => dispatch(orderByNewer()),
+        orderByOlder : () => dispatch(orderByOlder())
     }
 }
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));
+
