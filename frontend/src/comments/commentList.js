@@ -9,6 +9,7 @@ export default props => (
                     <p>{comment.body}</p>
                     <p>{comment.author}</p>
                     <p>{dateFormat(comment.timestamp)}</p>
+                    <p>Votescore: {comment.voteScore}</p>
                 </div>
             ))
         }
