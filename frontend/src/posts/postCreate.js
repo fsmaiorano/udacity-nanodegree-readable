@@ -1,12 +1,63 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import serializeForm from 'form-serialize'
 import * as actions from './actions';
 
 class PostCreate extends Component {
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        const post = serializeForm(event.target, { hash: true });
+        const curPost = this.getCurPost()
+        if (curPost) {
+            curPost.title = post.title
+            curPost.body = post.body
+            curPost.category = post.category
+            this.props.updatePost(curPost, this.props.history)
+        } else {
+            this.props.addPost(post, this.props.history)
+        }
+    }
+
+
+    getCurPost() {
+        const postId = this.props.match.params.postId
+        if (postId !== undefined) {
+            const newPosts = this.props.posts.filter((post) => {
+                return post.id === postId
+            })
+            if (newPosts.length > 0) {
+                return newPosts[0]
+            }
+        }
+        return undefined
+    }
+
     render() {
+        const { categories, history, posts } = this.props
+        const post = this.getCurPost()
         return (
-            <div>post create</div>
+            <div>
+                <a onClick={() => history.goBack()} className='close'> back </a>
+                <form onSubmit={this.onSubmit} className='create-post-form'>
+                    <div className='create-post-details'>
+                        <input type='text' name='title' placeholder='title' defaultValue={post && post.title} />
+                        <br />
+                        <input type='text' name='body' placeholder='body' defaultValue={post && post.body} />
+                        <br />
+                        <select name='category' defaultValue={post ? post.category : Object.keys(categories)[0]}>
+                            {
+                                categories && categories.map(category => (
+                                    <option value={category.name} key={category.name}>{category.name}</option>
+                                ))
+
+                            }
+                        </select>
+                        <button>{post ? 'Update Post' : 'Create Post'}</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

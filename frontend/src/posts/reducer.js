@@ -17,6 +17,8 @@ function doSort(state, sortFunc) {
 
 export const posts = (state = [], action) => {
     switch (action.type) {
+        case ACTIONS.ADD_POST:
+        return state.concat(action.post)
         case ACTIONS.GET_ALL_POSTS:
             return action.posts.filter(post => post.deleted === false);
         case ACTIONS.ORDERBY_LESS_VOTES:

@@ -10,6 +10,16 @@ export const fetchPosts = () =>
     fetch(`${apiUrl}/posts`, { headers })
         .then(res => res.json());
 
+export const createPost = (body) =>
+    fetch(`${apiUrl}/posts`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(res => res.json())
+
 //Categories
 export const fetchAllCategories = () =>
     fetch(`${apiUrl}/categories`, { headers })
@@ -22,13 +32,13 @@ export const fetchComments = (postId) => {
         .then(res => res.json())
 }
 
-export const addComment = (body) =>{
+export const addComment = (body) => {
     return fetch(`${apiUrl}/comments`, {
-      method: 'POST',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
     }).then(res => res.json())
-  }
+}
