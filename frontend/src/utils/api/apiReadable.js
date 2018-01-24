@@ -6,6 +6,14 @@ const headers = {
 }
 
 //Posts
+export const deletePost = (postId) =>{
+    return fetch(`${apiUrl}/posts/${postId}`, {
+      method: 'DELETE',
+      headers
+    })
+  }
+  
+
 export const fetchPosts = () =>
     fetch(`${apiUrl}/posts`, { headers })
         .then(res => res.json());

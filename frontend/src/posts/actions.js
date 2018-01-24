@@ -1,9 +1,10 @@
 import * as API from '../utils/api/apiReadable';
-import { getComments } from '../comments/actions'
+// import { getComments } from '../comments/actions'
 
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const ADD_POST = 'ADD_POST'
+export const DELETE_POST = 'DELETE_POST'
 export const ORDERBY_MORE_VOTES = 'ORDERBY_MORE_VOTES'
 export const ORDERBY_LESS_VOTES = 'ORDERBY_LESS_VOTES'
 export const ORDERBY_NEWER = 'ORDERBY_NEWER'
@@ -37,6 +38,14 @@ function addPostSuccess(post) {
     return {
         type: ADD_POST,
         post
+    }
+}
+
+
+function deletePostSuccess(postId) {
+    return {
+        type: DELETE_POST,
+        postId
     }
 }
 
@@ -86,6 +95,19 @@ export const getAllPosts = () => {
             //     dispatch(getComments(post.id))
             //     return post
             //   })
+        })
+    }
+}
+
+export const deletePost = (postId, history) => {
+    return dispatch => {
+        API.deletePost(postId).then((data) => {
+            if (data.status === 200) {
+                dispatch(deletePostSuccess(postId))
+                if (history) {
+                    history.goBack()
+                }
+            }
         })
     }
 }
