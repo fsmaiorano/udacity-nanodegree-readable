@@ -30,6 +30,13 @@ export const posts = (state = [], action) => {
         case ACTIONS.ORDERBY_OLDER:
         case ACTIONS.ORDERBY_NEWER:
             return doSort(state, action.type)
+        case ACTIONS.VOTE_POST:
+            return state.map(post => {
+                if (post.id === action.post.id) {
+                    return action.post
+                }
+                return post
+            })
         default: return state;
     }
 }

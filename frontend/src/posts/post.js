@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { deletePost } from './actions';
+import { deletePost, votePost } from './actions';
 
 class Post extends Component {
 
@@ -24,6 +24,8 @@ class Post extends Component {
                             <p>Comments: {comments.length}</p>
                             <button onClick={() => this.props.deletePost(post.id, history)}>delete</button>
                             <button onClick={() => this.editPost(post.id)}>edit</button>
+                            <button onClick={() => this.props.votePost(post.id, true)}>+</button>
+                            <button onClick={() => this.props.votePost(post.id, false)}>-</button>
                         </div>
                     ) : (<div></div>)
                 }
@@ -42,7 +44,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (postId, history) => dispatch(deletePost(postId, history))
+        deletePost: (postId, history) => dispatch(deletePost(postId, history)),
+        votePost: (postId, vote) => dispatch(votePost(postId, vote))
     }
 }
 
