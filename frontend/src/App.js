@@ -15,6 +15,10 @@ import PostDetails from './posts/postDetail'
 import { getAllPosts } from './posts/actions';
 import { getAllCategories } from './categories/actions';
 
+//Material
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+
 class App extends Component {
 
   componentDidMount() {
@@ -29,6 +33,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={() => (
             <div>
+              <AppBar position="static" color="default">
+                <Toolbar>
+                  Readable
+                </Toolbar>
+              </AppBar>
+
               <CategoryList categories={categories} />
               <PostList posts={posts} />
               <div className="post-create">

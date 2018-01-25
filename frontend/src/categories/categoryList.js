@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+//Material
+import Button from 'material-ui/Button';
+
+const categoryList = {
+    margin: '20px',
+    display: 'inline-block'
+}
+
 export default props => (
     <div>
-        <p>Categories</p>
-        <ul>
-            {
-                props.categories !== undefined && props.categories.map((category) => (
-                    <Link to={`/${category.name}`}>
-                        <li key={category.name}> {category.name} </li>
+        {
+            props.categories !== undefined && props.categories.map((category) => (
+                <div style={categoryList}>
+                    <Link to={`/${category.name}`} style={{ textDecoration: 'none' }} >
+                        <Button color="primary" key={category.name}> {category.name} </Button>
                     </Link>
-                ))
-            }
-        </ul>
+                </div>
+            ))
+        }
     </div>
 )
 
