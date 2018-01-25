@@ -11,7 +11,7 @@ class PostList extends Component {
             case 'ORDERBY_MORE_VOTES':
                 return this.props.orderByMoreVotes()
             case 'ORDERBY_LESS_VOTES':
-                return this.props.orderByLessVotes()
+                return this.props.postId()
             case 'ORDERBY_NEWER':
                 return this.props.orderByNewer()
             case 'ORDERBY_OLDER':
@@ -37,6 +37,8 @@ class PostList extends Component {
                             <Link to={`/${post.category}/${post.id}`}>Details</Link>
                             <p>{post.title}</p>
                             <p>{post.body}</p>
+                            <p>VoteScore: {post.voteScore}</p>
+                            <p>Comments: {post.commentCount}</p>
                         </div>
                     ))
                 }

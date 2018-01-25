@@ -2,6 +2,7 @@ import * as API from '../utils/api/apiReadable';
 
 export const GET_POST_COMMENTS = 'GET_COMMENT_DETAIL';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const ORDERBY_MORE_VOTES = 'ORDERBY_MORE_VOTES'
 export const ORDERBY_LESS_VOTES = 'ORDERBY_LESS_VOTES'
 export const ORDERBY_NEWER = 'ORDERBY_NEWER'
@@ -38,13 +39,43 @@ export const addCommentSuccess = (comment) => {
     }
 }
 
+export const getPostComments = (comments) => {
+    return {
+        type: GET_POST_COMMENTS,
+        comments
+    }
+}
+
+export const setDeleteComment = (commentId) => {
+    return {
+        type: DELETE_COMMENT,
+        commentId
+    }
+}
+
+export const deleteComment = (commentId, postId) => {
+    return dispatch => {
+        API.deleteComment(commentId).then(data => {
+            if (data.status === 200) {
+                dispatch(setDeleteComment(commentId));
+                dispatch(getComments(postId));
+                // dispatch({
+                //     type: DELETE_COMMENT,
+                //     commentId
+                // })
+            }
+        })
+    }
+}
+
 export const getComments = (postId) => {
     return dispatch => {
         API.fetchComments(postId).then(comments => {
-            dispatch({
-                type: GET_POST_COMMENTS,
-                comments
-            })
+            dispatch(getPostComments(comments));
+            // dispatch({
+            //     type: GET_POST_COMMENTS,
+            //     comments
+            // })
         })
     }
 }

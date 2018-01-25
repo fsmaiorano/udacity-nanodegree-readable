@@ -6,13 +6,13 @@ const headers = {
 }
 
 //Posts
-export const deletePost = (postId) =>{
+export const deletePost = (postId) => {
     return fetch(`${apiUrl}/posts/${postId}`, {
-      method: 'DELETE',
-      headers
+        method: 'DELETE',
+        headers
     })
-  }
-  
+}
+
 
 export const fetchPosts = () =>
     fetch(`${apiUrl}/posts`, { headers })
@@ -39,6 +39,14 @@ export const fetchComments = (postId) => {
     return fetch(`${apiUrl}/posts/${postId}/comments`, { headers })
         .then(res => res.json())
 }
+
+export const deleteComment = (commentId) => {
+    return fetch(`${apiUrl}/comments/${commentId}`, {
+        method: 'DELETE',
+        headers
+    })
+}
+
 
 export const addComment = (body) => {
     return fetch(`${apiUrl}/comments`, {

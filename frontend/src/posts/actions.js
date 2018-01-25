@@ -1,5 +1,5 @@
 import * as API from '../utils/api/apiReadable';
-// import { getComments } from '../comments/actions'
+import { getComments } from '../comments/actions'
 
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'

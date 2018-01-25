@@ -22,6 +22,13 @@ export function comments(state = [], action) {
             return action.comments;
         case ACTIONS.ADD_COMMENT:
             return state.concat(action.comment)
+        case ACTIONS.DELETE_COMMENT:
+            return state.map(comment => {
+                if (comment.id === action.commentId) {
+                    comment.deleted = true
+                }
+                return comment
+            })
         case ACTIONS.ORDERBY_LESS_VOTES:
         case ACTIONS.ORDERBY_MORE_VOTES:
         case ACTIONS.ORDERBY_OLDER:
