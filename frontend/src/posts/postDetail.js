@@ -7,6 +7,17 @@ import CommentCreate from '../comments/commentCreate';
 import CommentList from '../comments/commentList';
 import serializeForm from 'form-serialize'
 
+//Material
+import Paper from 'material-ui/Paper';
+
+const card = {
+    padding: '4%'
+}
+
+const selectedPost = {
+    padding: '4%'
+}
+
 class PostDetail extends Component {
 
     componentDidMount = () => {
@@ -35,9 +46,10 @@ class PostDetail extends Component {
         const post = posts.filter((post) => post.id === postId)[0];
         return (
             <div>
-                <div>
-                    <p>Post</p>
-                    <Post post={post} />
+                <div style={selectedPost}>
+                    <Paper elevation={4} style={card}>
+                        <Post post={post} />
+                    </Paper>
                 </div>
                 <div className='comment-create'>
                     <CommentCreate />
