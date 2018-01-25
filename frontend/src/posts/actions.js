@@ -68,18 +68,18 @@ export const updatePostSuccess = (post) => {
 
 function votePostSuccess(post) {
     return {
-      type : VOTE_POST,
-      post
+        type: VOTE_POST,
+        post
     }
-  }
+}
 
 export function votePost(postId, isUp) {
     return dispatch => {
-      API.votePost(postId, isUp).then(data => {
-        dispatch(votePostSuccess(data))
-      })
+        API.votePost(postId, isUp).then(data => {
+            dispatch(votePostSuccess(data))
+        })
     }
-  }
+}
 
 export function addPost(post, history) {
     const newPost = {
@@ -119,12 +119,12 @@ export function updatePost(editedPost, selectedPost, history) {
 export const getAllPosts = () => {
     return dispatch => {
         API.fetchPosts().then(posts => {
-            posts.map(post=>{
-                dispatch(getComments(post.id))
-                return post
-              })
             dispatch(getPosts(posts))
             dispatch(orderByMoreVotes())
+            posts.map(post => {
+                dispatch(getComments(post.id))
+                return post
+            })
         })
     }
 }

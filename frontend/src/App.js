@@ -18,8 +18,8 @@ import { getAllCategories } from './categories/actions';
 class App extends Component {
 
   componentDidMount() {
-    this.props.getPosts();
     this.props.getCategories();
+    this.props.getPosts();
   }
 
   render() {
@@ -56,8 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPosts: () => dispatch(getAllPosts()),
-    getCategories: () => dispatch(getAllCategories())
+    getCategories: () => dispatch(getAllCategories()),
+    getPosts: () => dispatch(getAllPosts())
   }
 }
 

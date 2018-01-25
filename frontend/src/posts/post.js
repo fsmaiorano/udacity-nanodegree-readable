@@ -11,8 +11,13 @@ class Post extends Component {
         this.props.history.push(`/post/${postId}/edit`);
     }
 
+    commentsCount = (postId, comments) => {
+        return comments.filter(comment => comment.parentId === postId && !comment.deleted && !comment.parentDeleted)
+    }
+
     render() {
         const { comments, post, history } = this.props;
+        const postComments = this.commentsCount(post.id, comments)
         return (
             <div>
                 {
