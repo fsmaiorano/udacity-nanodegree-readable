@@ -134,7 +134,7 @@ export const deletePost = (postId, history) => {
         API.deletePost(postId).then((data) => {
             if (data.status === 200) {
                 dispatch(deletePostSuccess(postId))
-                if (history) {
+                if (history.location.pathname !== '/') {
                     history.goBack()
                 }
             }
