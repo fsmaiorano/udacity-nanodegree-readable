@@ -47,7 +47,7 @@ class PostEdit extends Component {
                         <br />
                         <input type='text' name='body' placeholder='body' defaultValue={post && post.body} />
                         <br />
-                        <select name='category'>
+                        <select name='category' defaultValue={post && post.category}>
                             {
                                 categories && categories.map(category => (
                                     <option value={category.name} key={category.name}>{category.name}</option>

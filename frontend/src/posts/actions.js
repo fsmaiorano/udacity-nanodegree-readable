@@ -91,6 +91,7 @@ export function updatePost(editedPost, selectedPost, history) {
     selectedPost.title = editedPost.title;
     selectedPost.body = editedPost.body;
     selectedPost.author = editedPost.author;
+    selectedPost.category = editedPost.category;
     selectedPost.timestamp = new Date().getTime()
 
     return dispatch => {
@@ -104,10 +105,10 @@ export function updatePost(editedPost, selectedPost, history) {
 export const getAllPosts = () => {
     return dispatch => {
         API.fetchPosts().then(posts => {
-            // posts.map(post=>{
-            //     dispatch(getComments(post.id))
-            //     return post
-            //   })
+            posts.map(post=>{
+                dispatch(getComments(post.id))
+                return post
+              })
             dispatch(getPosts(posts))
             dispatch(orderByMoreVotes())
         })
