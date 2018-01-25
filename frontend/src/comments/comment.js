@@ -55,15 +55,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(Comment))
-
-// import React from 'react';
-// import { dateFormat } from '../utils/helpers/helpers';
-// export default props => (
-//     <div>
-//         <p>{props.comment.body}</p>
-//         <p>{props.comment.author}</p>
-//         <p>{dateFormat(props.comment.timestamp)}</p>
-//         <p>Votescore: {props.comment.voteScore}</p>
-//         <button onClick={() => this.props.deleteComment(props.comment.id, props.comment.parentId)}></button>
-//     </div>
-// )

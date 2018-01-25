@@ -12,21 +12,10 @@ class PostEdit extends Component {
         const editedPost = serializeForm(event.target, { hash: true });
         const selectedPost = this.selectedPost();
 
-
         if (selectedPost) {
             this.props.updatePost(editedPost, selectedPost, history);
         }
 
-
-        // const curPost = this.getCurPost()
-        // if (curPost) {
-        //     curPost.title = post.title
-        //     curPost.body = post.body
-        //     curPost.category = post.category
-        //     this.props.updatePost(curPost, this.props.history)
-        // } else {
-        //     this.props.addPost(post, this.props.history)
-        // }
     }
 
     selectedPost = () => {

@@ -69,10 +69,6 @@ export const deleteComment = (commentId, postId) => {
             if (data.status === 200) {
                 dispatch(setDeleteComment(commentId));
                 dispatch(getComments(postId));
-                // dispatch({
-                //     type: DELETE_COMMENT,
-                //     commentId
-                // })
             }
         })
     }
@@ -93,10 +89,6 @@ export const getComments = (postId) => {
     return dispatch => {
         API.fetchComments(postId).then(comments => {
             dispatch(getPostComments(comments));
-            // dispatch({
-            //     type: GET_POST_COMMENTS,
-            //     comments
-            // })
         })
     }
 }
@@ -109,10 +101,6 @@ export function updateComment(editedComment, selectedComment, history) {
         API.updateComment(selectedComment).then(comment => {
             dispatch(setUpdateComment(comment));
             history.goBack();
-            // dispatch({
-            //   type : UPDATE_COMMENT,
-            //   comment
-            // })
         })
     }
 }

@@ -39,7 +39,6 @@ class Post extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
     const { comments } = state
     return {
