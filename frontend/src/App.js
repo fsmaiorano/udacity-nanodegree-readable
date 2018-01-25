@@ -40,7 +40,6 @@ class App extends Component {
           <Route path={'/post/:postId/edit'} component={PostEdit} />
           <Route exact path={'/:category'} component={CategoryDetail} />
           <Route exact path={'/:category/:postId'} component={PostDetails} />
-          <Route exact path={'/:category/:postId'} component={PostDetails} />
           <Route exact path={'/:category/:postId/comment/:commentId/edit'} component={CommentEdit} />
         </Switch>
       </div>
@@ -48,7 +47,6 @@ class App extends Component {
   }
 }
 
-// <Route exact path={'/:category/:postId/comment/:commentId/edit'} component={PostDetails} />
 const mapStateToProps = (state) => {
   const { posts, categories } = state;
   return {
