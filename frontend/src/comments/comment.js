@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { dateFormat } from '../utils/helpers/helpers';
-import { deleteComment } from './actions';
+import { deleteComment, voteComment } from './actions';
 
 class Comment extends Component {
 
@@ -24,6 +24,8 @@ class Comment extends Component {
                             <p>Votescore: {comment.voteScore}</p>
                             <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}></button>
                             <button onClick={() => this.editComment(comment.id, comment.parentId)}></button>
+                            <button onClick={() => this.props.voteComment(comment.id, true)}>+</button>
+                            <button onClick={() => this.props.voteComment(comment.id, false)}>-</button>
                         </div>) : (<div></div>)
                 }
             </div>
@@ -47,7 +49,8 @@ class Comment extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteComment: (commentId, postId) => dispatch(deleteComment(commentId, postId))
+        deleteComment: (commentId, postId) => dispatch(deleteComment(commentId, postId)),
+        voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote))
     }
 }
 

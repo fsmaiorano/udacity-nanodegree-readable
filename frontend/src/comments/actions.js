@@ -4,6 +4,7 @@ export const GET_POST_COMMENTS = 'GET_COMMENT_DETAIL';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const ORDERBY_MORE_VOTES = 'ORDERBY_MORE_VOTES'
 export const ORDERBY_LESS_VOTES = 'ORDERBY_LESS_VOTES'
 export const ORDERBY_NEWER = 'ORDERBY_NEWER'
@@ -76,6 +77,17 @@ export const deleteComment = (commentId, postId) => {
         })
     }
 }
+
+export function voteComment(commentId, isUp) {
+    return dispatch => {
+      API.voteComment(commentId, isUp).then(comment => {
+        dispatch({
+          type : VOTE_COMMENT,
+          comment
+        })
+      })
+    }
+  }
 
 export const getComments = (postId) => {
     return dispatch => {

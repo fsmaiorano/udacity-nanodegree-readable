@@ -36,6 +36,13 @@ export function comments(state = [], action) {
                 }
                 return comment
             })
+        case ACTIONS.VOTE_COMMENT:
+            return state.map(comment => {
+                if (comment.id === action.comment.id) {
+                    return action.comment
+                }
+                return comment
+            })
         case ACTIONS.ORDERBY_LESS_VOTES:
         case ACTIONS.ORDERBY_MORE_VOTES:
         case ACTIONS.ORDERBY_OLDER:

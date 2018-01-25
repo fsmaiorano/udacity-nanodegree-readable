@@ -7,17 +7,17 @@ const headers = {
 
 //Posts
 export const votePost = (postId, isUp) => {
-    const body = {option: isUp ? 'upVote':'downVote'}
+    const body = { option: isUp ? 'upVote' : 'downVote' }
     return fetch(`${apiUrl}/posts/${postId}`, {
-      method: 'POST',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
     }).then(res => res.json())
-  }
-  
+}
+
 
 export const deletePost = (postId) => {
     return fetch(`${apiUrl}/posts/${postId}`, {
@@ -69,6 +69,18 @@ export const deleteComment = (commentId) => {
         method: 'DELETE',
         headers
     })
+}
+
+export const voteComment = (commentId, isUp) => {
+    const body = { option: isUp ? 'upVote' : 'downVote' }
+    return fetch(`${apiUrl}/comments/${commentId}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(res => res.json())
 }
 
 export const updateComment = (comment) => {
