@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as actions from './actions';
+import Post from './post';
 
 class PostList extends Component {
     sortBy = (event) => {
@@ -35,10 +36,8 @@ class PostList extends Component {
                     posts !== undefined && posts.map((post) => (
                         <div key={post.title} className='post-list'>
                             <Link to={`/${post.category}/${post.id}`}>Details</Link>
-                            <p>{post.title}</p>
-                            <p>{post.body}</p>
-                            <p>VoteScore: {post.voteScore}</p>
-                            <p>Comments: {post.commentCount}</p>
+                            < Post post={post} />
+                            
                         </div>
                     ))
                 }
