@@ -104,12 +104,12 @@ export function updatePost(editedPost, selectedPost, history) {
 export const getAllPosts = () => {
     return dispatch => {
         API.fetchPosts().then(posts => {
-            dispatch(getPosts(posts))
-            dispatch(orderByMoreVotes())
             // posts.map(post=>{
             //     dispatch(getComments(post.id))
             //     return post
             //   })
+            dispatch(getPosts(posts))
+            dispatch(orderByMoreVotes())
         })
     }
 }

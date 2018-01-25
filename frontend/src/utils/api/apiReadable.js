@@ -58,6 +58,16 @@ export const deleteComment = (commentId) => {
     })
 }
 
+export const updateComment = (comment) => {
+    return fetch(`${apiUrl}/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comment)
+    }).then(res => res.json())
+}
 
 export const addComment = (body) => {
     return fetch(`${apiUrl}/comments`, {

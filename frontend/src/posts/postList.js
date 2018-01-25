@@ -12,7 +12,7 @@ class PostList extends Component {
             case 'ORDERBY_MORE_VOTES':
                 return this.props.orderByMoreVotes()
             case 'ORDERBY_LESS_VOTES':
-                return this.props.postId()
+                return this.props.orderByLessVotes()
             case 'ORDERBY_NEWER':
                 return this.props.orderByNewer()
             case 'ORDERBY_OLDER':

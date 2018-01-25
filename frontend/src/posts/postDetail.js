@@ -64,7 +64,7 @@ class PostDetail extends Component {
                 </select>
                 <div className='comment-list'>
                     <p>Comments</p>
-                    <CommentList comments={comments} />
+                    <CommentList post={post} comments={comments} />
                 </div>
             </div>
         )

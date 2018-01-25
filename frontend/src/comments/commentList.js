@@ -3,35 +3,23 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { dateFormat } from '../utils/helpers/helpers';
 
+import Comment from './comment';
 import { deleteComment } from './actions';
 
 class CommentList extends Component {
     render() {
-        const { comments } = this.props;
+        const { comments, post } = this.props;
         return (
             <div>
                 {
-                    comments.map(comment => (
-                        <div>
-                            <p>{comment.body}</p>
-                            <p>{comment.author}</p>
-                            <p>{dateFormat(comment.timestamp)}</p>
-                            <p>Votescore: {comment.voteScore}</p>
-                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}></button>
-                        </div>
+                    comments && comments.map(comment => (
+                        <Comment comment={comment} category={post.category} action={'create'} />
                     ))
                 }
             </div>
         )
     }
 }
-
-// const mapStateToProps = (state) => {
-//     const { comments } = state
-//     return {
-//         comments
-//     }
-// }
 
 const mapDispatchToProps = (dispatch) => {
     return {

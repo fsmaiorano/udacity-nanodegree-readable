@@ -2,6 +2,7 @@ import * as API from '../utils/api/apiReadable';
 
 export const GET_POST_COMMENTS = 'GET_COMMENT_DETAIL';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const ORDERBY_MORE_VOTES = 'ORDERBY_MORE_VOTES'
 export const ORDERBY_LESS_VOTES = 'ORDERBY_LESS_VOTES'
@@ -53,6 +54,14 @@ export const setDeleteComment = (commentId) => {
     }
 }
 
+export const setUpdateComment = (comment) => {
+    return {
+        type: UPDATE_COMMENT,
+        comment
+    }
+}
+
+
 export const deleteComment = (commentId, postId) => {
     return dispatch => {
         API.deleteComment(commentId).then(data => {
@@ -79,6 +88,23 @@ export const getComments = (postId) => {
         })
     }
 }
+
+export function updateComment(editedComment, selectedComment, history) {
+    selectedComment.body = editedComment.body;
+    selectedComment.author = editedComment.author;
+    selectedComment.timestamp = new Date().getTime();
+    return dispatch => {
+        API.updateComment(selectedComment).then(comment => {
+            dispatch(setUpdateComment(comment));
+            history.goBack();
+            // dispatch({
+            //   type : UPDATE_COMMENT,
+            //   comment
+            // })
+        })
+    }
+}
+
 
 export const addComment = (postId, comment) => {
     const newComment = {
