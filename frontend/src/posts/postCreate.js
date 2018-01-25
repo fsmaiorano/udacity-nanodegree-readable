@@ -9,44 +9,21 @@ class PostCreate extends Component {
     onSubmit = (event) => {
         event.preventDefault()
         const post = serializeForm(event.target, { hash: true });
-        const curPost = this.getCurPost()
-        if (curPost) {
-            curPost.title = post.title
-            curPost.body = post.body
-            curPost.category = post.category
-            this.props.updatePost(curPost, this.props.history)
-        } else {
-            this.props.addPost(post, this.props.history)
-        }
-    }
-
-
-    getCurPost() {
-        const postId = this.props.match.params.postId
-        if (postId !== undefined) {
-            const newPosts = this.props.posts.filter((post) => {
-                return post.id === postId
-            })
-            if (newPosts.length > 0) {
-                return newPosts[0]
-            }
-        }
-        return undefined
+        this.props.addPost(post, this.props.history)
     }
 
     render() {
         const { categories, history, posts } = this.props
-        const post = this.getCurPost()
         return (
             <div>
                 <a onClick={() => history.goBack()} className='close'> back </a>
                 <form onSubmit={this.onSubmit} className='create-post-form'>
                     <div className='create-post-details'>
-                        <input type='text' name='title' placeholder='title' defaultValue={post && post.title} />
+                        <input type='text' name='title' placeholder='title' />
                         <br />
-                        <input type='text' name='body' placeholder='body' defaultValue={post && post.body} />
+                        <input type='text' name='body' placeholder='body'  />
                         <br />
-                        <select name='category' defaultValue={post ? post.category : Object.keys(categories)[0]}>
+                        <select name='category'>
                             {
                                 categories && categories.map(category => (
                                     <option value={category.name} key={category.name}>{category.name}</option>
@@ -54,7 +31,7 @@ class PostCreate extends Component {
 
                             }
                         </select>
-                        <button>{post ? 'Update Post' : 'Create Post'}</button>
+                        <button>Create Post</button>
                     </div>
                 </form>
             </div>

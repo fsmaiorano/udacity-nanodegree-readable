@@ -37,7 +37,7 @@ class PostList extends Component {
                         <div key={post.title} className='post-list'>
                             <Link to={`/${post.category}/${post.id}`}>Details</Link>
                             < Post post={post} />
-                            
+
                         </div>
                     ))
                 }

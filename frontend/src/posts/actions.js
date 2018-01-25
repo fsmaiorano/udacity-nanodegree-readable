@@ -1,7 +1,7 @@
 import * as API from '../utils/api/apiReadable';
 import { getComments } from '../comments/actions'
 
-
+export const UPDATE_POST = 'UPDATE_POST'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
@@ -57,6 +57,15 @@ export const getPosts = (posts) => {
     }
 }
 
+
+export const updatePostSuccess = (post) => {
+    return {
+        type: UPDATE_POST,
+        post
+    }
+}
+
+
 export function addPost(post, history) {
 
     const newPost = {
@@ -77,15 +86,20 @@ export function addPost(post, history) {
     }
 }
 
-//   export function updatePost(post, history) {
-//     post['timestamp'] = Date.now()
-//     return dispatch => {
-//       API.updatePost(post).then(data=>{
-//         dispatch(updatePostSuccess(data))
-//         history.goBack()
-//       })
-//     }
-//   }
+export function updatePost(editedPost, selectedPost, history) {
+
+    selectedPost.title = editedPost.title;
+    selectedPost.body = editedPost.body;
+    selectedPost.author = editedPost.author;
+    selectedPost.timestamp = new Date().getTime()
+
+    return dispatch => {
+        API.updatePost(selectedPost).then(data => {
+            dispatch(updatePostSuccess(data))
+            history.goBack()
+        })
+    }
+}
 
 export const getAllPosts = () => {
     return dispatch => {

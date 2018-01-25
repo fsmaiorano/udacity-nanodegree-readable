@@ -5,6 +5,12 @@ import { connect } from 'react-redux';
 import { deletePost } from './actions';
 
 class Post extends Component {
+
+    editPost = (postId) => {
+        const { history } = this.props;
+        this.props.history.push(`/post/${postId}/edit`);
+    }
+
     render() {
         const { comments, post, history } = this.props;
         return (
@@ -17,6 +23,7 @@ class Post extends Component {
                             <p>VoteScore: {post.voteScore}</p>
                             <p>Comments: {comments.length}</p>
                             <button onClick={() => this.props.deletePost(post.id, history)}>delete</button>
+                            <button onClick={() => this.editPost(post.id)}>edit</button>
                         </div>
                     ) : (<div></div>)
                 }
