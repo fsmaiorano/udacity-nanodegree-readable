@@ -60,6 +60,7 @@ export const getPosts = (posts) => {
 export function addPost(post, history) {
 
     const newPost = {
+        title: post.title,
         body: post.body,
         author: post.author || 'Anonymous',
         category: post.category,
