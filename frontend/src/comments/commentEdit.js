@@ -6,6 +6,10 @@ import * as actions from './actions';
 
 class CommentEdit extends Component {
 
+    backToRoot = () => {
+        this.props.history.push('/');
+    }
+
     onEditComment = (event) => {
         const { history } = this.props;
         event.preventDefault()
@@ -17,19 +21,27 @@ class CommentEdit extends Component {
     selectedComment = () => {
         const { comments } = this.props;
         const commentId = this.props.match.params.commentId;
-        return comments.filter(comment => comment.id === commentId)[0];
+        let comment = comments.filter(comment => comment.id === commentId)[0];
+        if(comment === undefined) {
+            this.backToRoot();
+        }
+        else {
+            return comment;
+        }
     }
 
     render() {
         const comment = this.selectedComment();
         return (
             <div>
+                <h1>Edit Comment</h1>
                 {
                     comment !== undefined ? (
-                        <form onSubmit={this.onEditComment}>
+                        <form onSubmit={this.onEditComment} className="edit-comment">
                             <input type='text' name='body' placeholder='input an comment' ref='body' defaultValue={comment.body} />
                             <input type='text' name='author' placeholder='author of comment' ref='author' defaultValue={comment.author} />
-                            <button>submit comment</button>
+                            <button onClick={() => this.props.history.goBack()}>Cancel</button>
+                            <button>Edit Commenct</button>ß
                         </form>
                     ) : (<div></div>)
                 }

@@ -22,10 +22,12 @@ class Comment extends Component {
                             <p>{comment.author}</p>
                             <p>{dateFormat(comment.timestamp)}</p>
                             <p>Votescore: {comment.voteScore}</p>
-                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}></button>
-                            <button onClick={() => this.editComment(comment.id, comment.parentId)}></button>
-                            <button onClick={() => this.props.voteComment(comment.id, true)}>+</button>
-                            <button onClick={() => this.props.voteComment(comment.id, false)}>-</button>
+
+                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}><i class="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.editComment(comment.id, comment.parentId)}><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.voteComment(comment.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.voteComment(comment.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
+
                         </div>) : (<div></div>)
                 }
             </div>

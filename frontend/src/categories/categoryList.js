@@ -4,15 +4,13 @@ import { Link } from 'react-router-dom'
 export default props => (
     <div>
         <p>Categories</p>
-        <ul>
             {
                 props.categories !== undefined && props.categories.map((category) => (
                     <Link to={`/${category.name}`}>
-                        <li key={category.name}> {category.name} </li>
+                        <span key={category.name}> {category.name} </span>
                     </Link>
                 ))
             }
-        </ul>
     </div>
 )
 

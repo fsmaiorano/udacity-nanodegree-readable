@@ -11,14 +11,15 @@ class CommentCreate extends Component {
         const comment = serializeForm(event.target, { hash: true });
         if (comment.body) {
             const postId = this.props.match.params.postId;
-            this.props.addComment(postId, comment)
+            this.props.addComment(postId, comment);
+            document.getElementById('frmCreateComment').reset();
         }
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.onCreateComment}>
+            <div className='create-comment'>
+                <form onSubmit={this.onCreateComment} id="frmCreateComment">
                     <input type='text' name='body' placeholder='input an comment' ref='body' />
                     <input type='text' name='author' placeholder='author of comment' ref='author' />
                     <button>submit comment</button>

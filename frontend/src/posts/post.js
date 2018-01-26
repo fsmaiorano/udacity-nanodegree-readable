@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { deletePost, votePost } from './actions';
 
 class Post extends Component {
 
+    backToRoot = () => {
+        this.props.history.push('/');
+    }
+
     editPost = (postId) => {
         const { history } = this.props;
         this.props.history.push(`/post/${postId}/edit`);
     }
 
-    commentsCount = (postId, comments) => {
-        return comments.filter(comment => comment.parentId === postId && !comment.deleted && !comment.parentDeleted)
+    commentsCount = (post, comments) => {
+        if (post !== undefined) {
+            return comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+        }
+        else {
+            return this.backToRoot();
+        }
     }
 
     render() {
         const { comments, post, history } = this.props;
-        const postComments = this.commentsCount(post.id, comments)
+        const postComments = this.commentsCount(post, comments)
         return (
             <div>
+
                 {
                     post !== undefined ? (
                         <div>
@@ -27,10 +37,15 @@ class Post extends Component {
                             <p>{post.body}</p>
                             <p>VoteScore: {post.voteScore}</p>
                             <p>Comments: {comments.length}</p>
-                            <button onClick={() => this.props.deletePost(post.id, history)}>delete</button>
-                            <button onClick={() => this.editPost(post.id)}>edit</button>
-                            <button onClick={() => this.props.votePost(post.id, true)}>+</button>
-                            <button onClick={() => this.props.votePost(post.id, false)}>-</button>
+                            {
+                                this.props.history.location.pathname !== '/' ? (<div></div>) : (
+                                    <button onClick={() => this.props.history.push(`/${post.category}/${post.id}`)}><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>
+                                )
+                            }
+                            <button onClick={() => this.props.deletePost(post.id, history)}><i class="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.editPost(post.id)}><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.votePost(post.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.votePost(post.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
                         </div>
                     ) : (<div></div>)
                 }

@@ -35,8 +35,9 @@ class PostDetail extends Component {
         const post = posts.filter((post) => post.id === postId)[0];
         return (
             <div>
-                <div>
-                    <p>Post</p>
+                   <button onClick={() => this.props.history.goBack()}>Back</button>
+                <h1>Post Detail</h1>
+                <div class='post-detail'>
                     <Post post={post} />
                 </div>
                 <div className='comment-create'>
@@ -50,8 +51,7 @@ class PostDetail extends Component {
                     <option value='ORDERBY_OLDER' >Older</option>
 
                 </select>
-                <div className='comment-list'>
-                    <p>Comments</p>
+                <div>
                     <CommentList post={post} comments={comments} />
                 </div>
             </div>

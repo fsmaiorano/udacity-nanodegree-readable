@@ -31,7 +31,10 @@ body {
   to { transform: rotate(360deg); }
 }
 
-.post-list, .comment-list {
+.post-list, .comment-list, .post-detail {
   border: solid 1px black;
 }
 
+  .post-list, .comment-list, .create-comment, .edit-comment  {
+    margin: 2%
+  }

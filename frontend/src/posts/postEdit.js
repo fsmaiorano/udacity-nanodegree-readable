@@ -29,7 +29,7 @@ class PostEdit extends Component {
         const post = this.selectedPost();
         return (
             <div>
-                <a onClick={() => history.goBack()} className='close'> back </a>
+                <h1>Post Edit</h1>
                 <form onSubmit={this.onSubmit} className='create-post-form'>
                     <div className='create-post-details'>
                         <input type='text' name='title' placeholder='title' defaultValue={post && post.title} />
@@ -44,6 +44,8 @@ class PostEdit extends Component {
 
                             }
                         </select>
+                        <br/>
+                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
                         <button>Update Post</button>
                     </div>
                 </form>

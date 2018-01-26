@@ -11,9 +11,12 @@ class CommentList extends Component {
         const { comments, post } = this.props;
         return (
             <div>
+                <p>Comments</p>
                 {
                     comments && comments.map(comment => (
-                        <Comment comment={comment} category={post.category} action={'create'} />
+                        <div className="comment-list">
+                            <Comment comment={comment} category={post.category} action={'create'} />
+                        </div>
                     ))
                 }
             </div>

@@ -28,12 +28,10 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' render={() => (
-            <div>
+            <div className="post-create">
+              <Link to='/post/create'>Create new post</Link>
               <CategoryList categories={categories} />
               <PostList posts={posts} />
-              <div className="post-create">
-                <Link to='/post/create'>X</Link>
-              </div>
             </div>
           )} />
           <Route exact path={'/post/create'} component={PostCreate} />
