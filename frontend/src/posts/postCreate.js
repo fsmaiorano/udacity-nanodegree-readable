@@ -12,8 +12,11 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select'
 import Save from 'material-ui-icons/Save';
 import Back from 'material-ui-icons/Close';
+import BackRoute from 'material-ui-icons/ChevronLeft';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
+import Toolbar from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar';
 
 const link = {
     textDecoration: 'none'
@@ -52,7 +55,7 @@ class PostCreate extends Component {
     }
 
     handleChange = event => {
-        this.setState({category : event.target.value });
+        this.setState({ category: event.target.value });
     };
 
     render() {
@@ -61,8 +64,13 @@ class PostCreate extends Component {
         let category = 'react';
         return (
             <div>
-
-                <a onClick={() => history.goBack()} className='close'> back </a>
+                <AppBar position="static" color="default">
+                    <Toolbar>
+                        <Link to='/' style={link}>
+                            <BackRoute />
+                        </Link>
+                    </Toolbar>
+                </AppBar>
 
                 <Paper elevation={4} style={createPostForm}>
                     <form onSubmit={this.onSubmit}  >
