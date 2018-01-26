@@ -18,6 +18,8 @@ import { getAllCategories } from './categories/actions';
 //Material
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
 
 class App extends Component {
 
@@ -38,11 +40,14 @@ class App extends Component {
                   Readable
                 </Toolbar>
               </AppBar>
-
               <CategoryList categories={categories} />
               <PostList posts={posts} />
               <div className="post-create">
-                <Link to='/post/create'>X</Link>
+                <Link to='/post/create'>
+                  <Button fab color="primary" aria-label="add new post" >
+                    <AddIcon />
+                  </Button>
+                </Link>
               </div>
             </div>
           )} />
