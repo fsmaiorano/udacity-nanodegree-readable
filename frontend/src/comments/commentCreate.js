@@ -9,6 +9,8 @@ import TextField from 'material-ui/TextField';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl, FormHelperText } from 'material-ui/Form';
+import Button from 'material-ui/Button';
+import Save from 'material-ui-icons/Save';
 
 const input = {
     width: '100%'
@@ -34,7 +36,7 @@ class CommentCreate extends Component {
         return (
             <div style={frmCreateComment}>
                 <form onSubmit={this.onCreateComment} id="frmCreateComment">
-                    
+
                     <TextField
                         id="body"
                         label="Body"
@@ -50,7 +52,10 @@ class CommentCreate extends Component {
                         margin="normal"
                         style={input}
                     />
-                    <button>submit comment</button>
+                    <Button raised dense type='submit'>
+                        <Save />
+                        Create Comment
+                    </Button>
                 </form>
             </div>
         )
