@@ -9,6 +9,13 @@ import serializeForm from 'form-serialize'
 
 //Material
 import Paper from 'material-ui/Paper';
+import Toolbar from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar';
+import BackRoute from 'material-ui-icons/ChevronLeft';
+
+const link = {
+    textDecoration: 'none'
+}
 
 const card = {
     padding: '4%'
@@ -16,6 +23,11 @@ const card = {
 
 const selectedPost = {
     padding: '4%'
+}
+
+const commentsStyle = {
+    margin: '5%',
+    transform: 'translate(25%)'
 }
 
 class PostDetail extends Component {
@@ -46,12 +58,19 @@ class PostDetail extends Component {
         const post = posts.filter((post) => post.id === postId)[0];
         return (
             <div>
+                <AppBar position="static" color="default">
+                    <Toolbar>
+                        <Link to='/' style={link}>
+                            <BackRoute />
+                        </Link>
+                    </Toolbar>
+                </AppBar>
                 <div style={selectedPost}>
                     <Paper elevation={4} style={card}>
                         <Post post={post} />
                     </Paper>
                 </div>
-                <div className='comment-create'>
+                <div style={commentsStyle}>
                     <CommentCreate />
                 </div>
                 sortBy:

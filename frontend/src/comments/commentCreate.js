@@ -4,6 +4,20 @@ import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import * as actions from './actions';
 
+//Material
+import TextField from 'material-ui/TextField';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import { FormControl, FormHelperText } from 'material-ui/Form';
+
+const input = {
+    width: '100%'
+}
+
+const frmCreateComment = {
+    width: '50%'
+}
+
 class CommentCreate extends Component {
 
     onCreateComment = (event) => {
@@ -12,15 +26,30 @@ class CommentCreate extends Component {
         if (comment.body) {
             const postId = this.props.match.params.postId;
             this.props.addComment(postId, comment)
+            document.getElementById("frmCreateComment").reset();
         }
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.onCreateComment}>
-                    <input type='text' name='body' placeholder='input an comment' ref='body' />
-                    <input type='text' name='author' placeholder='author of comment' ref='author' />
+            <div style={frmCreateComment}>
+                <form onSubmit={this.onCreateComment} id="frmCreateComment">
+                    
+                    <TextField
+                        id="body"
+                        label="Body"
+                        name="body"
+                        margin="normal"
+                        style={input}
+                    />
+
+                    <TextField
+                        id="author"
+                        label="Author"
+                        name="author"
+                        margin="normal"
+                        style={input}
+                    />
                     <button>submit comment</button>
                 </form>
             </div>

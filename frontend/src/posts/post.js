@@ -27,7 +27,6 @@ const info ={
 class Post extends Component {
 
     editPost = (postId) => {
-        const { history } = this.props;
         this.props.history.push(`/post/${postId}/edit`);
     }
 
@@ -35,8 +34,15 @@ class Post extends Component {
         return comments.filter(comment => comment.parentId === postId && !comment.deleted && !comment.parentDeleted)
     }
 
+    backToRoot = () => {
+        this.props.history.push('/');
+    }
+
     render() {
         const { comments, post, history } = this.props;
+        
+        if(!post) return this.backToRoot();
+
         const postComments = this.commentsCount(post.id, comments)
         return (
             <div>
@@ -77,7 +83,7 @@ class Post extends Component {
                                 </IconButton>
                             </Tooltip>
 
-                            <IconButton disabled color="primary" onClick={() => this.props.votePost(post.id, true)}>
+                            <IconButton disabled color="primary">
                                 <ThumbUp color="primary" />
                             </IconButton>
 

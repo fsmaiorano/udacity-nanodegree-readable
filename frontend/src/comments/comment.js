@@ -4,6 +4,17 @@ import { connect } from 'react-redux';
 import { dateFormat } from '../utils/helpers/helpers';
 import { deleteComment, voteComment } from './actions';
 
+//Material
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui-icons/Delete';
+import SearchIcon from 'material-ui-icons/Search';
+import ModeEdit from 'material-ui-icons/ModeEdit';
+import ExpandMore from 'material-ui-icons/ExpandMore';
+import ExpandLess from 'material-ui-icons/ExpandLess';
+import ThumbUp from 'material-ui-icons/ThumbUp';
+import Tooltip from 'material-ui/Tooltip';
+
+
 class Comment extends Component {
 
     editComment = (commentId, commentParentId) => {
@@ -22,10 +33,35 @@ class Comment extends Component {
                             <p>{comment.author}</p>
                             <p>{dateFormat(comment.timestamp)}</p>
                             <p>Votescore: {comment.voteScore}</p>
-                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}></button>
-                            <button onClick={() => this.editComment(comment.id, comment.parentId)}></button>
-                            <button onClick={() => this.props.voteComment(comment.id, true)}>+</button>
-                            <button onClick={() => this.props.voteComment(comment.id, false)}>-</button>
+
+                            <Tooltip id="tooltip-icon" title="Delete this comment">
+                                <IconButton color="primary" onClick={() => this.props.deleteComment(comment.id, comment.parentId)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
+
+                            <Tooltip id="tooltip-icon" title="Edit this comment">
+                                <IconButton color="primary" onClick={() => this.editComment(comment.id, comment.parentId)}>
+                                    <ModeEdit />
+                                </IconButton>
+                            </Tooltip>
+
+                            <Tooltip id="tooltip-icon" title="Like">
+                                <IconButton color="primary" onClick={() => this.props.voteComment(comment.id, true)}>
+                                    <ExpandLess />
+                                </IconButton>
+                            </Tooltip>
+
+                            <IconButton disabled color="primary" >
+                                <ThumbUp color="primary" />
+                            </IconButton>
+
+                            <Tooltip id="tooltip-icon" title="Dislike">
+                                <IconButton color="primary" onClick={() => this.props.voteComment(comment.id, false)}>
+                                    <ExpandMore />
+                                </IconButton>
+                            </Tooltip>
+                           
                         </div>) : (<div></div>)
                 }
             </div>

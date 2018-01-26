@@ -6,6 +6,13 @@ import { dateFormat } from '../utils/helpers/helpers';
 import Comment from './comment';
 import { deleteComment } from './actions';
 
+//Material
+import Paper from 'material-ui/Paper';
+
+const card = {
+    padding: '4%'
+}
+
 class CommentList extends Component {
     render() {
         const { comments, post } = this.props;
@@ -13,7 +20,9 @@ class CommentList extends Component {
             <div>
                 {
                     comments && comments.map(comment => (
-                        <Comment comment={comment} category={post.category} action={'create'} />
+                        <Paper elevation={4} style={card}>
+                            <Comment comment={comment} category={post.category} action={'create'} />
+                        </Paper>
                     ))
                 }
             </div>
