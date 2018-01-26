@@ -25,6 +25,11 @@ const selectedPost = {
     padding: '4%'
 }
 
+const commentsList = {
+    padding: '1%',
+    marginBottom: '5%'
+}
+
 const commentsStyle = {
     margin: '5%',
     transform: 'translate(25%)'
@@ -81,7 +86,7 @@ class PostDetail extends Component {
                     <option value='ORDERBY_OLDER' >Older</option>
 
                 </select>
-                <div className='comment-list'>
+                <div style={commentsList}>
                     <p>Comments</p>
                     <CommentList post={post} comments={comments} />
                 </div>
