@@ -17,7 +17,8 @@ class Post extends Component {
 
     commentsCount = (post, comments) => {
         if (post !== undefined) {
-            return comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+            const commentCount = comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+            return commentCount.length === 0 ? post.commentCount : commentCount.length;
         }
         else {
             return this.backToRoot();
@@ -28,8 +29,6 @@ class Post extends Component {
         const { comments, post, history } = this.props;
         const postComments = this.commentsCount(post, comments)
 
-        let commentCount = postComments.length === 0 ? post.commentCount : postComments.length;
-
         return (
             <div>
 
@@ -39,7 +38,7 @@ class Post extends Component {
                             <p>{post.title}</p>
                             <p>{post.body}</p>
                             <p>VoteScore: {post.voteScore}</p>
-                            <p>Comments: {commentCount}</p>
+                            <p>Comments: {postComments}</p>
                             {
                                 this.props.history.location.pathname !== '/' ? (<div></div>) : (
                                     <button onClick={() => this.props.history.push(`/${post.category}/${post.id}`)}><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>
