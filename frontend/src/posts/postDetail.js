@@ -36,7 +36,7 @@ class PostDetail extends Component {
             <div>
                 <button onClick={() => this.props.history.goBack()}>Back</button>
                 <h1>Post Detail</h1>
-                <div class='post-detail'>
+                <div className='post-detail'>
                     <Post post={post} />
                 </div>
                 <div className='comment-create'>
