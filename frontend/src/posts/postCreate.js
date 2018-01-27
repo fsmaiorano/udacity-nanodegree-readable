@@ -37,7 +37,7 @@ class PostCreate extends Component {
                             }
                         </select>
                         <br />
-                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
+                        <button onClick={() => this.props.history.push('/')}>Cancel</button>
                         <button>Create Post</button>
                     </div>
                 </form>
