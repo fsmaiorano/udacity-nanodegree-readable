@@ -44,8 +44,8 @@ class PostList extends Component {
                             </select>
                             {
                                 posts !== undefined && posts.map((post) => (
-                                    <div key={post.title} className='post-list'>
-                                        < Post post={post} />
+                                    <div key={post.title + 1} className='post-list'>
+                                        < Post post={post}  />
                                     </div>
                                 ))
                             }

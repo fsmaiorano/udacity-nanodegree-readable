@@ -14,6 +14,10 @@ class PostDetail extends Component {
         comments: PropTypes.array.isRequired,
     }
 
+    backToRoot = () => {
+        this.props.history.push('/');
+    }
+
     componentDidMount = () => {
         const postId = this.props.match.params.postId;
         this.props.getComments(postId);
@@ -34,10 +38,22 @@ class PostDetail extends Component {
         }
     }
 
+    commentsCount = (post, comments) => {
+        if (post !== undefined) {
+            const commentCount = comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+            return commentCount.length;
+        }
+        else {
+            return this.backToRoot();
+        }
+    }
+
     render() {
         const { posts, comments, commentSort } = this.props;
         const postId = this.props.match.params.postId;
         const post = posts.filter((post) => post.id === postId)[0];
+
+        if (post) post.commentCount = this.commentsCount(post, comments);
         return (
             <div>
                 <button onClick={() => this.props.history.goBack()}>Back</button>
