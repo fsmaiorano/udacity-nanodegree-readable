@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { PropTypes } from 'prop-types';
 import * as actions from './actions';
 import Post from './post';
 
 class PostList extends Component {
+
+    static propTypes = {
+        posts: PropTypes.array.isRequired,
+        postSort: PropTypes.object
+    }
+
+
     sortBy = (event) => {
         const value = event.target.value
         switch (value) {

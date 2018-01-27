@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
+import { PropTypes } from 'prop-types';
 import * as actions from './actions';
 
 class PostCreate extends Component {
+
+    static propTypes = {
+        categories: PropTypes.array.isRequired,
+    }
 
     onSubmit = (event) => {
         event.preventDefault()
