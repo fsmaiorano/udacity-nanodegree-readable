@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { deletePost, votePost } from './actions';
@@ -11,7 +11,6 @@ class Post extends Component {
     }
 
     editPost = (postId) => {
-        const { history } = this.props;
         this.props.history.push(`/post/${postId}/edit`);
     }
 
@@ -41,13 +40,13 @@ class Post extends Component {
                             <p>Comments: {postComments}</p>
                             {
                                 this.props.history.location.pathname !== '/' ? (<div></div>) : (
-                                    <button onClick={() => this.props.history.push(`/${post.category}/${post.id}`)}><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>
+                                    <button onClick={() => this.props.history.push(`/${post.category}/${post.id}`)}><i className="fa fa-search fa-3x" aria-hidden="true"></i></button>
                                 )
                             }
-                            <button onClick={() => this.props.deletePost(post.id, history)}><i class="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.editPost(post.id)}><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.props.votePost(post.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.props.votePost(post.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.deletePost(post.id, history)}><i className="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.editPost(post.id)}><i className="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.votePost(post.id, true)}><i className="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.votePost(post.id, false)}><i className="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
                         </div>
                     ) : (<div>Ups! No post here</div>)
                 }

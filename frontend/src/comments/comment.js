@@ -7,7 +7,7 @@ import { deleteComment, voteComment } from './actions';
 class Comment extends Component {
 
     editComment = (commentId, commentParentId) => {
-        const { history, category, postId } = this.props;
+        const { category  } = this.props;
         this.props.history.push(`/${category}/${commentParentId}/comment/${commentId}/edit`);
     }
 
@@ -23,10 +23,10 @@ class Comment extends Component {
                             <p>{dateFormat(comment.timestamp)}</p>
                             <p>Votescore: {comment.voteScore}</p>
 
-                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}><i class="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.editComment(comment.id, comment.parentId)}><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.props.voteComment(comment.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
-                            <button onClick={() => this.props.voteComment(comment.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.deleteComment(comment.id, comment.parentId)}><i className="fa fa-trash-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.editComment(comment.id, comment.parentId)}><i className="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.voteComment(comment.id, true)}><i className="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
+                            <button onClick={() => this.props.voteComment(comment.id, false)}><i className="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
 
                         </div>) : (<div>No comments here :(</div>)
                 }
@@ -41,7 +41,6 @@ class Comment extends Component {
                 return (
                     this.renderCommentCreateForm()
                 )
-                break;
 
             default:
                 break;

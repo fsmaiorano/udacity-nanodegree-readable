@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment, getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByOlder } from '../comments/actions';
+import { getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByOlder } from '../comments/actions';
 import Post from './post';
 import CommentCreate from '../comments/commentCreate';
 import CommentList from '../comments/commentList';
-import serializeForm from 'form-serialize'
 
 class PostDetail extends Component {
 

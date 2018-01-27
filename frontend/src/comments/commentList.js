@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { dateFormat } from '../utils/helpers/helpers';
 
 import Comment from './comment';
 import { deleteComment } from './actions';

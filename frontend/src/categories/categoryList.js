@@ -6,7 +6,7 @@ export default props => (
         <p>Categories</p>
             {
                 props.categories !== undefined && props.categories.map((category) => (
-                    <Link to={`/${category.name}`}>
+                    <Link key={category.name} to={`/${category.name}`}>
                         <span className='category' key={category.name}> {category.name} </span>
                     </Link>
                 ))

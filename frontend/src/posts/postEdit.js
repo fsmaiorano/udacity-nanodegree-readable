@@ -7,7 +7,7 @@ import * as actions from './actions';
 class PostEdit extends Component {
 
     onSubmit = (event) => {
-        const { posts, history } = this.props;
+        const { history } = this.props;
         event.preventDefault()
         const editedPost = serializeForm(event.target, { hash: true });
         const selectedPost = this.selectedPost();
@@ -25,7 +25,7 @@ class PostEdit extends Component {
     }
 
     render() {
-        const { categories, history, posts } = this.props
+        const { categories } = this.props
         const post = this.selectedPost();
         return (
             <div>
@@ -44,7 +44,7 @@ class PostEdit extends Component {
 
                             }
                         </select>
-                        <br/>
+                        <br />
                         <button onClick={() => this.props.history.push('/')}>Cancel</button>
                         <button>Update Post</button>
                     </div>

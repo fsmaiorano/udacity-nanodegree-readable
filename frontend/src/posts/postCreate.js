@@ -13,15 +13,15 @@ class PostCreate extends Component {
     }
 
     render() {
-        const { categories, history, posts } = this.props
+        const { categories } = this.props
         return (
             <div>
-            <button onClick={() => this.props.history.goBack()}>Back</button>
+                <button onClick={() => this.props.history.goBack()}>Back</button>
                 <form onSubmit={this.onSubmit} className='create-post-form'>
                     <div className='create-post-details'>
                         <input type='text' name='title' placeholder='title' />
                         <br />
-                        <input type='text' name='body' placeholder='body'  />
+                        <input type='text' name='body' placeholder='body' />
                         <br />
                         <select name='category'>
                             {
@@ -31,7 +31,7 @@ class PostCreate extends Component {
 
                             }
                         </select>
-                        <br/>
+                        <br />
                         <button onClick={() => this.props.history.goBack()}>Cancel</button>
                         <button>Create Post</button>
                     </div>

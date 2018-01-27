@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import logo from './logo.svg';
 import './App.css';
 
 import PostCreate from './posts/postCreate';
