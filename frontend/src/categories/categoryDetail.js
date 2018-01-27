@@ -28,7 +28,7 @@ class CategoryDetail extends Component {
 
         return (
             <div>
-                <Link to='/' className='close' />
+                <button onClick={() => this.props.history.goBack()}>Back</button>
                 <div>
                     <CategoryList categories={category} />
                     <PostList posts={filterByCategory} />

@@ -35,7 +35,7 @@ class PostDetail extends Component {
         const post = posts.filter((post) => post.id === postId)[0];
         return (
             <div>
-                   <button onClick={() => this.props.history.goBack()}>Back</button>
+                <button onClick={() => this.props.history.goBack()}>Back</button>
                 <h1>Post Detail</h1>
                 <div class='post-detail'>
                     <Post post={post} />

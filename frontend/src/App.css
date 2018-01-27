@@ -35,6 +35,10 @@ body {
   border: solid 1px black;
 }
 
-  .post-list, .comment-list, .create-comment, .edit-comment  {
+  .post-list, .comment-list, .create-comment, .edit-comment , .category-list {
     margin: 2%
+  }
+
+  .category {
+    margin-left: 15px;
   }
