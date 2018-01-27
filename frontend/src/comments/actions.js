@@ -89,6 +89,7 @@ export const getComments = (postId) => {
     return dispatch => {
         API.fetchComments(postId).then(comments => {
             dispatch(getPostComments(comments));
+            dispatch(orderByMoreVotes())
         })
     }
 }
