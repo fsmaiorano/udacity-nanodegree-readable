@@ -49,7 +49,7 @@ class Post extends Component {
                             <button onClick={() => this.props.votePost(post.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
                             <button onClick={() => this.props.votePost(post.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
                         </div>
-                    ) : (<div></div>)
+                    ) : (<div>Ups! No post here</div>)
                 }
             </div>
         )

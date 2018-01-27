@@ -28,7 +28,7 @@ class Comment extends Component {
                             <button onClick={() => this.props.voteComment(comment.id, true)}><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></button>
                             <button onClick={() => this.props.voteComment(comment.id, false)}><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></button>
 
-                        </div>) : (<div></div>)
+                        </div>) : (<div>No comments here :(</div>)
                 }
             </div>
         )

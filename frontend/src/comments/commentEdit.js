@@ -44,7 +44,7 @@ class CommentEdit extends Component {
                             <button onClick={() => this.props.history.goBack()}>Cancel</button>
                             <button>Edit Commenct</button>
                         </form>
-                    ) : (<div></div>)
+                    ) : (<div>Ups! No comment here</div>)
                 }
             </div>
         )

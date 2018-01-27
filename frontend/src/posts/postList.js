@@ -24,20 +24,26 @@ class PostList extends Component {
         const { posts, postSort } = this.props
         return (
             <div>
-                sortBy:
-                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort}>
-                    <option value='ORDERBY_MORE_VOTES' >More Votes</option>
-                    <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
-                    <option value='ORDERBY_NEWER'>Newer</option>
-                    <option value='ORDERBY_OLDER' >Older</option>
-
-                </select>
                 {
-                    posts !== undefined && posts.map((post) => (
-                        <div key={post.title} className='post-list'>
-                            < Post post={post} />
+                    posts.length > 0 ? (
+                        <div>
+                            sortBy:
+                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort}>
+                                <option value='ORDERBY_MORE_VOTES' >More Votes</option>
+                                <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
+                                <option value='ORDERBY_NEWER'>Newer</option>
+                                <option value='ORDERBY_OLDER' >Older</option>
+
+                            </select>
+                            {
+                                posts !== undefined && posts.map((post) => (
+                                    <div key={post.title} className='post-list'>
+                                        < Post post={post} />
+                                    </div>
+                                ))
+                            }
                         </div>
-                    ))
+                    ) : (<div>Ups! No posts here</div>)
                 }
             </div>
         )
