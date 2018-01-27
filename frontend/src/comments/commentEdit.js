@@ -34,6 +34,7 @@ class CommentEdit extends Component {
         const comment = this.selectedComment();
         return (
             <div>
+            <button onClick={() => this.props.history.goBack()}>Back</button>
                 <h1>Edit Comment</h1>
                 {
                     comment !== undefined ? (
@@ -41,7 +42,7 @@ class CommentEdit extends Component {
                             <input type='text' name='body' placeholder='input an comment' ref='body' defaultValue={comment.body} />
                             <input type='text' name='author' placeholder='author of comment' ref='author' defaultValue={comment.author} />
                             <button onClick={() => this.props.history.goBack()}>Cancel</button>
-                            <button>Edit Commenct</button>ß
+                            <button>Edit Commenct</button>
                         </form>
                     ) : (<div></div>)
                 }

@@ -16,7 +16,7 @@ class PostCreate extends Component {
         const { categories, history, posts } = this.props
         return (
             <div>
-                <a onClick={() => history.goBack()} className='close'> back </a>
+            <button onClick={() => this.props.history.goBack()}>Back</button>
                 <form onSubmit={this.onSubmit} className='create-post-form'>
                     <div className='create-post-details'>
                         <input type='text' name='title' placeholder='title' />
