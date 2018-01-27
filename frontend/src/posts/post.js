@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { PropTypes } from 'prop-types';
 import { deletePost, votePost } from './actions';
 
 class Post extends Component {
+
+    static propTypes = {
+        post: PropTypes.object,
+        comments: PropTypes.array.isRequired,
+        history: PropTypes.object.isRequired,
+    }
 
     backToRoot = () => {
         this.props.history.push('/');

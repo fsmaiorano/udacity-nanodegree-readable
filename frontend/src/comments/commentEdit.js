@@ -3,9 +3,14 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import * as actions from './actions';
+import { PropTypes } from 'prop-types';
 
 class CommentEdit extends Component {
 
+    static propTypes = {
+        comments: PropTypes.array.isRequired,
+    }
+    
     backToRoot = () => {
         this.props.history.push('/');
     }

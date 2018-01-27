@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { PropTypes } from 'prop-types';
 import CategoryList from './categoryList';
 import PostList from '../posts/postList';
 
 class CategoryDetail extends Component {
+
+    static propTypes = {
+        posts: PropTypes.array.isRequired,
+        categories: PropTypes.array.isRequired,
+    }
 
     validateRoute = (categories, category) => {
 
@@ -48,5 +53,6 @@ const mapStateToProps = (state) => {
         posts
     }
 }
+
 
 export default withRouter(connect(mapStateToProps)(CategoryDetail));

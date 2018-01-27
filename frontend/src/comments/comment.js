@@ -3,11 +3,16 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { dateFormat } from '../utils/helpers/helpers';
 import { deleteComment, voteComment } from './actions';
+import { PropTypes } from 'prop-types';
 
 class Comment extends Component {
 
+    static propTypes = {
+        comment: PropTypes.object.isRequired,
+    }
+
     editComment = (commentId, commentParentId) => {
-        const { category  } = this.props;
+        const { category } = this.props;
         this.props.history.push(`/${category}/${commentParentId}/comment/${commentId}/edit`);
     }
 

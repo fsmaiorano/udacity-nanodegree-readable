@@ -5,8 +5,14 @@ import { getComments, orderByMoreVotes, orderByLessVotes, orderByNewer, orderByO
 import Post from './post';
 import CommentCreate from '../comments/commentCreate';
 import CommentList from '../comments/commentList';
+import { PropTypes } from 'prop-types';
 
 class PostDetail extends Component {
+
+    static propTypes = {
+        posts: PropTypes.array.isRequired,
+        comments: PropTypes.array.isRequired,
+    }
 
     componentDidMount = () => {
         const postId = this.props.match.params.postId;
