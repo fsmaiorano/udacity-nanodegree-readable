@@ -45,7 +45,7 @@ class PostEdit extends Component {
                             }
                         </select>
                         <br/>
-                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
+                        <button onClick={() => this.props.history.push('/')}>Cancel</button>
                         <button>Update Post</button>
                     </div>
                 </form>
