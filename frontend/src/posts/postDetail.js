@@ -6,6 +6,7 @@ import Post from './post';
 import CommentCreate from '../comments/commentCreate';
 import CommentList from '../comments/commentList';
 import { PropTypes } from 'prop-types';
+import { doSort } from '../utils/helpers/helpers';
 
 class PostDetail extends Component {
 
@@ -49,11 +50,17 @@ class PostDetail extends Component {
     }
 
     render() {
+        let commentList = [];
         const { posts, comments, commentSort } = this.props;
         const postId = this.props.match.params.postId;
         const post = posts.filter((post) => post.id === postId)[0];
 
         if (post) post.commentCount = this.commentsCount(post, comments);
+
+        if (comments) {
+            commentList = doSort(comments, commentSort);
+        }
+
         return (
             <div>
                 <button onClick={() => this.props.history.goBack()}>Back</button>
@@ -70,7 +77,7 @@ class PostDetail extends Component {
                     <CommentCreate />
                 </div>
                 sortBy:
-                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={commentSort}>
+                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={commentSort.sort}>
                     <option value='ORDERBY_MORE_VOTES' >More Votes</option>
                     <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
                     <option value='ORDERBY_NEWER'>Newer</option>
@@ -78,7 +85,7 @@ class PostDetail extends Component {
 
                 </select>
                 <div>
-                    <CommentList post={post} comments={comments} />
+                    <CommentList post={post} comments={commentList} />
                 </div>
             </div>
         )

@@ -6,6 +6,7 @@ import * as actions from './actions';
 import Post from './post';
 import { doSort } from '../utils/helpers/helpers';
 import post from './post';
+
 class PostList extends Component {
 
     static propTypes = {

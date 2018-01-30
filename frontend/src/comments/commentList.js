@@ -18,7 +18,7 @@ class CommentList extends Component {
             <div>
                 <p>Comments</p>
                 {
-                    comments && comments.map(comment => (
+                    post && comments && comments.map(comment => (
                         <div className="comment-list" key={comment.id}>
                             <Comment comment={comment} category={post.category} action={'create'} />
                         </div>
