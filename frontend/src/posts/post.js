@@ -20,30 +20,31 @@ class Post extends Component {
         this.props.history.push(`/post/${postId}/edit`);
     }
 
-    commentsCount = (post, comments) => {
-        if (post !== undefined) {
-            const commentCount = comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
-            return commentCount.length === 0 ? post.commentCount : commentCount.length;
-        }
-        else {
-            return this.backToRoot();
-        }
-    }
+    // commentsCount = (post, comments) => {
+    //     if (post !== undefined) {
+    //         const commentCount = comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+    //         return commentCount.length === 0 ? post.commentCount : commentCount.length;
+    //     }
+    //     else {
+    //         return this.backToRoot();
+    //     }
+    // }
 
     render() {
         const { comments, post, history } = this.props;
-        const postComments = this.commentsCount(post, comments)
+        // const postComments = this.commentsCount(post, comments)
 
         return (
             <div>
 
                 {
-                    post !== undefined ? (
+                    post ? (
                         <div>
                             <p>{post.title}</p>
                             <p>{post.body}</p>
+                            <p>Author: {post.author}</p>
                             <p>VoteScore: {post.voteScore}</p>
-                            <p>Comments: {postComments}</p>
+                            <p>Comments: {post.commentCount}</p>
                             {
                                 this.props.history.location.pathname !== '/' ? (<div></div>) : (
                                     <button onClick={() => this.props.history.push(`/${post.category}/${post.id}`)}><i className="fa fa-search fa-3x" aria-hidden="true"></i></button>
@@ -61,12 +62,7 @@ class Post extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { comments } = state
-    return {
-        comments
-    }
-}
+const mapStateToProps = ({ comments }) => ({ comments });
 
 const mapDispatchToProps = (dispatch) => {
     return {

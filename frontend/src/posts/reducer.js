@@ -1,19 +1,5 @@
 import * as ACTIONS from './actions'
-import { orderBy } from 'lodash';
-
-function doSort(state, sortFunc) {
-    switch (sortFunc) {
-        case 'ORDERBY_MORE_VOTES':
-            return orderBy(state, 'voteScore', 'desc')
-        case 'ORDERBY_LESS_VOTES':
-            return orderBy(state, 'voteScore', 'asc')
-        case 'ORDERBY_NEWER':
-            return orderBy(state, 'timestamp', 'desc')
-        case 'ORDERBY_OLDER':
-            return orderBy(state, 'timestamp', 'asc')
-        default: return ''
-    }
-}
+import {doSort} from '../utils/helpers/helpers';
 
 export const posts = (state = [], action) => {
     switch (action.type) {
