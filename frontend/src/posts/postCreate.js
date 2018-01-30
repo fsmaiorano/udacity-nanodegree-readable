@@ -28,6 +28,8 @@ class PostCreate extends Component {
                         <br />
                         <input type='text' name='body' placeholder='body' />
                         <br />
+                        <input type='text' name='author' placeholder='author' />
+                        <br />
                         <select name='category'>
                             {
                                 categories && categories.map(category => (
