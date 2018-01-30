@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import * as actions from './actions';
 import Post from './post';
-
+import { doSort } from '../utils/helpers/helpers';
+import post from './post';
 class PostList extends Component {
 
     static propTypes = {
@@ -28,14 +29,20 @@ class PostList extends Component {
         }
     }
     render() {
+        let postList = [];
         const { posts, postSort } = this.props
+
+        if (posts) {
+            postList = doSort(posts, postSort);
+        }
+
         return (
             <div>
                 {
-                    posts.length > 0 ? (
+                    posts ?
                         <div>
                             sortBy:
-                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort}>
+                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort.value}>
                                 <option value='ORDERBY_MORE_VOTES' >More Votes</option>
                                 <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
                                 <option value='ORDERBY_NEWER'>Newer</option>
@@ -43,14 +50,14 @@ class PostList extends Component {
 
                             </select>
                             {
-                                posts !== undefined && posts.map((post) => (
+                                posts !== undefined && postList.map((post) => (
                                     <div key={post.title + 1} className='post-list'>
-                                        < Post post={post}  />
+                                        < Post post={post} />
                                     </div>
                                 ))
                             }
                         </div>
-                    ) : (<div>Ups! No posts here</div>)
+                        : <div>Ups! No posts here</div>
                 }
             </div>
         )

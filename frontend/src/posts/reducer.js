@@ -26,3 +26,19 @@ export const posts = (state = [], action) => {
         default: return state;
     }
 }
+
+export function postSort(state={sort:'ORDERBY_MORE_VOTES'}, action) {
+    switch (action.type) {
+      case ACTIONS.ORDERBY_OLDER:
+        return {sort : 'ORDERBY_OLDER'}
+      case ACTIONS.ORDERBY_NEWER:
+        return {sort : 'ORDERBY_NEWER'}
+      case ACTIONS.ORDERBY_LESS_VOTES:
+        return {sort : 'ORDERBY_LESS_VOTES'}
+      case ACTIONS.ORDERBY_MORE_VOTES:
+        return {sort : 'ORDERBY_MORE_VOTES'}
+      default:
+        return state
+    }
+  }
+ 
