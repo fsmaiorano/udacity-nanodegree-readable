@@ -14,6 +14,9 @@ class PostList extends Component {
         postSort: PropTypes.object
     }
 
+    componentDidMount = () => {
+        this.props.orderByMoreVotes()
+    }
 
     sortBy = (event) => {
         const value = event.target.value
@@ -43,7 +46,7 @@ class PostList extends Component {
                     posts ?
                         <div>
                             sortBy:
-                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort.value}>
+                <select id='vote-score-selector' name='voteScore' onChange={this.sortBy} value={postSort.sort}>
                                 <option value='ORDERBY_MORE_VOTES' >More Votes</option>
                                 <option value='ORDERBY_LESS_VOTES' >Less Votes</option>
                                 <option value='ORDERBY_NEWER'>Newer</option>

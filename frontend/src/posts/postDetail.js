@@ -22,6 +22,7 @@ class PostDetail extends Component {
     componentDidMount = () => {
         const postId = this.props.match.params.postId;
         this.props.getComments(postId);
+        this.props.orderByMoreVotes()
     }
 
     sortBy = (event) => {
