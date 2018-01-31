@@ -24,7 +24,7 @@ class Comment extends Component {
                     comment !== undefined ? (
                         <div>
                             <p>{comment.body}</p>
-                            <p>{comment.author}</p>
+                            <p>Author: {comment.author}</p>
                             <p>{dateFormat(comment.timestamp)}</p>
                             <p>Votescore: {comment.voteScore}</p>
 
