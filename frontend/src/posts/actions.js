@@ -1,6 +1,4 @@
 import * as API from '../utils/api/apiReadable';
-import { getComments } from '../comments/actions'
-
 export const VOTE_POST = 'VOTE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'

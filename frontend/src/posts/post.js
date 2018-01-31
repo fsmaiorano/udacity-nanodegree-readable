@@ -20,19 +20,8 @@ class Post extends Component {
         this.props.history.push(`/post/${postId}/edit`);
     }
 
-    // commentsCount = (post, comments) => {
-    //     if (post !== undefined) {
-    //         const commentCount = comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
-    //         return commentCount.length === 0 ? post.commentCount : commentCount.length;
-    //     }
-    //     else {
-    //         return this.backToRoot();
-    //     }
-    // }
-
     render() {
-        const { comments, post, history } = this.props;
-        // const postComments = this.commentsCount(post, comments)
+        const { post, history } = this.props;
 
         return (
             <div>
